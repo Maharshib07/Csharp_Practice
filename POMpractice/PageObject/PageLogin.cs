@@ -69,6 +69,7 @@ namespace POMpractice.PageObject
             usernamecontinue.Click();
             passwordenter.SendKeys(passwrd);
             Signbtn.Click();
+
         }
         public void SearchTv(string tvname,string upiid)
         {
