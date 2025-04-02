@@ -26,6 +26,7 @@ namespace POMpractice.Testcases
             chTv.SearchTv("sony bravia 55 inch","hsyyg558");
             var windowHandles = driver.WindowHandles;             // Handles switch Window
             driver.SwitchTo().Window(windowHandles[1]);
+            Console.WriteLine("");
         }
     }
 }
