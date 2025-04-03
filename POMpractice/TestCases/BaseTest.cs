@@ -17,8 +17,8 @@ namespace POMpractice.Testcasess
         [Test]
         //[TestCase("maharshibadiganti@gmail.com","Maharshi08@#")]
         //[TestCase("Maharshibadiganti@gmail.com","Maharshi")]
-        [TestCaseSource(nameof(AddTestDataConfig))]
-        public void AmazonLogin(string username, string password)
+        [TestCaseSource(nameof(AddTestData))]
+        public void AmazonLogin(string username, string password)//str name str password
         {
             LoginPage login = new LoginPage(getDriver());
             login.LogintoAmazon(username, password);
@@ -38,6 +38,11 @@ namespace POMpractice.Testcasess
         {
             yield return new TestCaseData("maharshibadiganti@gmail.com", "Maharshi08@#");
             yield return new TestCaseData("Maharshibadiganti@gmail.com", "Maharshi");
+        }
+        public static IEnumerable<TestCaseData> AddTestData()
+        {
+            yield return new TestCaseData(getdataparser().ExtractData("username"), getdataparser().ExtractData("password"));
+            yield return new TestCaseData(getdataparser().ExtractData("username_invalid"), getdataparser().ExtractData("password_invalid"));
         }
         public void WaitUntillPageDisplay(string Path)
         {
