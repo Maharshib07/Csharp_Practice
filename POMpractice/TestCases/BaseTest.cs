@@ -18,6 +18,7 @@ namespace POMpractice.Testcasess
         //[TestCase("maharshibadiganti@gmail.com","Maharshi08@#")]
         //[TestCase("Maharshibadiganti@gmail.com","Maharshi")]
         [TestCaseSource(nameof(AddTestData))]
+        
         public void AmazonLogin(string username, string password)//str name str password
         {
             LoginPage login = new LoginPage(getDriver());
@@ -50,6 +51,27 @@ namespace POMpractice.Testcasess
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.LinkText(Path)));
         }
 
+        // for parallel execution 1.test method 2.methods in class 3.Test file
+
+
+        [Test, TestCaseSource(nameof(AddTestData))]
+        [Parallelizable(ParallelScope.All)]
+        public void AmazonLogin1(string username, string password)//str name str password
+        {
+            LoginPage login = new LoginPage(getDriver());
+            login.LogintoAmazon(username, password);
+            //login.WaitUntillPageDisplay("");
+            //LoginPage success = login.LogintoAmazon(username, password);
+            // success.WaitUntillPageDisplay();
+
+        }
+        
+        public void selectATvtocart1()
+        {
+            LoginPage chTv = new LoginPage(getDriver());
+            chTv.SearchTv("sony bravia 55 inch", "8889725137@ybl");
+
+        }
 
     }
 }
