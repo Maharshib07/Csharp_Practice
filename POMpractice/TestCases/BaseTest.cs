@@ -12,6 +12,7 @@ using POMpractice.PageObject;
 namespace POMpractice.Testcasess
 {
     public class BaseTest : Browser
+    //dotnet test path.csproj --filter "TestCategory=Smoke"
     {
 
         [Test]
@@ -63,13 +64,6 @@ namespace POMpractice.Testcasess
             //login.WaitUntillPageDisplay("");
             //LoginPage success = login.LogintoAmazon(username, password);
             // success.WaitUntillPageDisplay();
-
-        }
-        
-        public void selectATvtocart1()
-        {
-            LoginPage chTv = new LoginPage(getDriver());
-            chTv.SearchTv("sony bravia 55 inch", "8889725137@ybl");
 
         }
 
