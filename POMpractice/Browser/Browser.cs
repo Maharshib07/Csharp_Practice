@@ -1,28 +1,35 @@
 ﻿
+
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
+using System.Configuration;
 using WebDriverManager.DriverConfigs.Impl;
 
 namespace POMpractice.Utilities
 {
-    public class Browser
+    public class Browser : IDisposable
     {
+        //for normal execution
+        //public IWebDriver driver;  
+        public ThreadLocal<IWebDriver> driver = new();
 
-        public IWebDriver driver;
-        [SetUp]
+        [SetUp]                          //for parallel exe driver to driver.Value
         public void WebBrowser()
         {
-            InitBrowser("Edge");
+            //string browsername = ConfigurationManager.AppSettings["WebDriver"];
 
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl("https://www.amazon.in/");
+
+            InitBrowser("edge");
+
+            driver.Value.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            driver.Value.Manage().Window.Maximize();
+            driver.Value.Navigate().GoToUrl("https://www.amazon.in/");
         }
         public IWebDriver getDriver()
         {
-            return driver;
+            return driver.Value;
         }
         public void InitBrowser(string browsername)
         {
@@ -31,17 +38,17 @@ namespace POMpractice.Utilities
                 case "chrome":
 
                     new WebDriverManager.DriverManager().SetUpDriver(new ChromeConfig());
-                    driver = new ChromeDriver();
+                    driver.Value = new ChromeDriver();
                     break;
 
                 case "firefox":
                     new WebDriverManager.DriverManager().SetUpDriver(new FirefoxConfig());
-                    driver = new FirefoxDriver();
+                    driver.Value = new FirefoxDriver();
                     break;
 
                 case "edge":
 
-                    driver = new EdgeDriver();
+                    driver.Value = new EdgeDriver();
                     break;
 
             }
@@ -53,11 +60,20 @@ namespace POMpractice.Utilities
         [TearDown]
         public void Tear()
         {
-            Thread.Sleep(3000);
-            driver.Quit();
+
+            driver.Value.Quit();
+            driver.Value.Dispose();
+        }
+
+        [OneTimeTearDown]
+        public void Dispose()
+        {
+            if (driver.IsValueCreated)
+            {
+                driver.Value.Quit();
+                driver.Value.Dispose();
+            }
             driver.Dispose();
-
-
         }
     }
 }

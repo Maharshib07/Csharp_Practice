@@ -13,11 +13,13 @@ namespace POMpractice.Utilities
         {
             
         }
-        public string ExtractData(string tokenName)
+        public string ExtractData(string tokenName) //string[] for mulyiple values
         {
            string Jasonfille = File.ReadAllText("Utilities/TestData.json");
            var datainjason = JToken.Parse(Jasonfille);
             return datainjason.SelectToken(tokenName).Value<string>();
+            //List<string> datainjason.SelectTokens(tokenName).Values<string>()ToList();
+            //return datainjason.ToArray();
 
         }
     }
