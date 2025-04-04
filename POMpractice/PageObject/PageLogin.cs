@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
 using System;
 using System.Collections.Generic;
@@ -10,34 +12,30 @@ namespace POMpractice.PageObject
 {
     public class LoginPage
     {
-        private IWebDriver driver;
-        public void Pagelogin(IWebDriver driver)
+        public IWebDriver _driver;
+        public LoginPage(IWebDriver driver)
         {
-            this.driver = driver;
+            this._driver = driver;
             PageFactory.InitElements(driver, this);
 
         }
-        private IWebDriver webDriver;
+        public IWebDriver webDriver;
 
-        public LoginPage(IWebDriver webDriver)
-        {
-            this.webDriver = webDriver;
-        }
-
-        // pageobject factory  
-        //private By clk = driver.FindElement(By.XPath("//span[text()='Hello, sign in']"))
-
+        
         //amzlogin
         [FindsBy(How = How.XPath, Using = "//span[text()='Hello, sign in']")]
         private IWebElement _loginbtn;
         [FindsBy(How = How.XPath, Using = "//input[@name='email']")]
-        private IWebElement usernameenter;
+        private IWebElement enterusername;
         [FindsBy(How = How.XPath, Using = "//input[@class='a-button-input']")]
         private IWebElement usernamecontinue;
         [FindsBy(How = How.Name, Using = "password")]
-        private IWebElement passwordenter;
+        private IWebElement enterpassword;
         [FindsBy(How = How.XPath, Using = "//input[@id='signInSubmit']")]
         private IWebElement Signbtn;
+        [FindsBy(How = How.LinkText, Using = "Hello, Maharshi")]
+        private IWebElement VerifySign;
+
         //select a sony tv into cart
         [FindsBy(How = How.XPath, Using = "//input[@id='twotabsearchtextbox']")]
         private IWebElement entersonytv;  //sendkeys and sendkeys(keys.enter)
@@ -58,18 +56,28 @@ namespace POMpractice.PageObject
         private IWebElement verifyUPIId;
         [FindsBy(How = How.XPath, Using = "//input[@aria-labelledby='checkout-secondary-continue-button-id-announce']")]
         private IWebElement clickonusethispayment;
-
-
-
-        public void validLoginbtn(string usernam, string passwrd)
+       
+       
+        public void LogintoAmazon(string username, string password)
         {
-            _loginbtn.Click();
-            
-            usernameenter.SendKeys(usernam);
-            usernamecontinue.Click();
-            passwordenter.SendKeys(passwrd);
-            Signbtn.Click();
+            try
+            {
+                _loginbtn.Click();
 
+                enterusername.SendKeys(username);
+                usernamecontinue.Click();
+                enterpassword.SendKeys(password);
+                Signbtn.Click();
+                
+                IWebElement ValidPassword = _driver.FindElement(By.XPath("//span[text()='Hello, Maharshi']"));
+                string stitle = ValidPassword.Text;
+                Assert.IsTrue(stitle == "Hello, Maharshi", "Invalid Username or Password");
+            }
+            catch (Exception msg)
+            {
+                Console.WriteLine("Invalid Login  :" + msg.Message);
+
+            }
         }
         public void SearchTv(string tvname,string upiid)
         {
@@ -77,8 +85,8 @@ namespace POMpractice.PageObject
             entersonytv.SendKeys(Keys.Enter);
             Findsony55inchtv.Click();
 
-            var windowHandles = driver.WindowHandles;             // Handles switch Window
-            driver.SwitchTo().Window(windowHandles[1]);
+            var windowHandles = _driver.WindowHandles;     // Handles switch Window
+            _driver.SwitchTo().Window(windowHandles[1]);
 
             addtvtocart.Click();
             clickoncartbtn.Click();
@@ -87,6 +95,6 @@ namespace POMpractice.PageObject
             enterUPIId.SendKeys(upiid);
             verifyUPIId.Click();
             clickonusethispayment.Click();
-        }   
+       }   
     }
 }
