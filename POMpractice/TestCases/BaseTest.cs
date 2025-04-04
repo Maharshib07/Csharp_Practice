@@ -12,6 +12,7 @@ using POMpractice.PageObject;
 namespace POMpractice.Testcasess
 {
     public class BaseTest : Browser
+
     //dotnet test path.csproj --filter "TestCategory=Smoke"
     {
 
