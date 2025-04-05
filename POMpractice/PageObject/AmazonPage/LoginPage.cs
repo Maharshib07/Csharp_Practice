@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using POMpractice.Utilities;
 using SeleniumExtras.PageObjects;
 using System;
 using System.Collections.Generic;
