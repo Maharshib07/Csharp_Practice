@@ -84,7 +84,7 @@ namespace POMpractice.PageObject
         private IWebElement Computersbtn;
         [FindsBy(How = How.XPath, Using = "//ul[@class='nav-ul']//following::li[15]")]
         private IWebElement Booksbtn;
-        [FindsBy(How = How.XPath, Using = "//ul[@class='nav-ul']//following::li[8]")]
+        [FindsBy(How = How.XPath, Using = "//ul[@class='nav-ul']//following::li[16]")]
         private IWebElement CarsandMotorbikesbtn;
 
 
