@@ -24,8 +24,8 @@ namespace POMpractice.PageObject
 
         
         //amzlogin
-        [FindsBy(How = How.XPath, Using = "//span[text()='Hello, sign in']")]
-        private IWebElement _loginbtn;
+        /*[FindsBy(How = How.XPath, Using = "//span[text()='Hello, sign in']")]
+        private IWebElement _loginbtn;*/
         [FindsBy(How = How.XPath, Using = "//input[@name='email']")]
         private IWebElement enterusername;
         [FindsBy(How = How.XPath, Using = "//input[@class='a-button-input']")]
@@ -36,6 +36,59 @@ namespace POMpractice.PageObject
         private IWebElement Signbtn;
         [FindsBy(How = How.LinkText, Using = "Hello, Maharshi")]
         private IWebElement VerifySign;
+
+        // Buttons in Amazon Login Page 
+        [FindsBy(How = How.Id, Using = "nav-logo-sprites")]
+        private IWebElement AmazonPageRefreshbtn;
+        [FindsBy(How = How.XPath, Using = "//input[@id='twotabsearchtextbox']")]
+        private IWebElement SearchBox;
+        [FindsBy(How = How.XPath, Using = "(//a[@role='button'])[1]")] 
+        private IWebElement Deliverybtn;
+        [FindsBy(How = How.XPath, Using = "//span[text()='Hello, sign in']")]
+        private IWebElement _loginbtn;
+        [FindsBy(How = How.XPath, Using = "//span[@class='icp-nav-link-inner']")]
+        private IWebElement Languagebtn;
+        [FindsBy(How = How.XPath, Using = "nav-orders")]
+        private IWebElement Returnsordersbtnbtn;
+        [FindsBy(How = How.XPath, Using = "//a[@class='f']")]
+        private IWebElement CartSymbolbtn;
+        [FindsBy(How = How.XPath, Using = "//a[text()='All'])[2]")]
+        private IWebElement Allbtn;     //Freshbtn  - //ul[@class='nav-ul']//following::li[1]
+        [FindsBy(How = How.XPath, Using = "//ul[@class='nav-ul']//following::li[1]")]
+        private IWebElement Freshbtn;
+        [FindsBy(How = How.XPath, Using = "//ul[@class='nav-ul']//following::li[2]")]
+        private IWebElement MXPlayerbtn;
+        [FindsBy(How = How.XPath, Using = "//ul[@class='nav-ul']//following::li[3]")]
+        private IWebElement Sellbtn;
+        [FindsBy(How = How.XPath, Using = "//ul[@class='nav-ul']//following::li[4]")]
+        private IWebElement Bestsellersbtn;
+        [FindsBy(How = How.XPath, Using = "//ul[@class='nav-ul']//following::li[5]")]
+        private IWebElement Mobilesbtn;
+        [FindsBy(How = How.XPath, Using = "//ul[@class='nav-ul']//following::li[6]")]
+        private IWebElement Todaysdealsbtn;
+        [FindsBy(How = How.XPath, Using = "//ul[@class='nav-ul']//following::li[7]")]
+        private IWebElement Primebtn;
+        [FindsBy(How = How.XPath, Using = "//ul[@class='nav-ul']//following::li[8]")]
+        private IWebElement CustomerServicesbtn;
+        [FindsBy(How = How.XPath, Using = "//ul[@class='nav-ul']//following::li[9]")]
+        private IWebElement NewReleasbtn;
+        [FindsBy(How = How.XPath, Using = "//ul[@class='nav-ul']//following::li[10]")]
+        private IWebElement Electronicsbtn;
+        [FindsBy(How = How.XPath, Using = "//ul[@class='nav-ul']//following::li[11]")]
+        private IWebElement Fashionbtn;
+        [FindsBy(How = How.XPath, Using = "//ul[@class='nav-ul']//following::li[12]")]
+        private IWebElement HomeandKitchenbtn;
+        [FindsBy(How = How.XPath, Using = "//ul[@class='nav-ul']//following::li[13]")]
+        private IWebElement AmazonPaybtn;
+        [FindsBy(How = How.XPath, Using = "//ul[@class='nav-ul']//following::li[14]")]
+        private IWebElement Computersbtn;
+        [FindsBy(How = How.XPath, Using = "//ul[@class='nav-ul']//following::li[15]")]
+        private IWebElement Booksbtn;
+        [FindsBy(How = How.XPath, Using = "//ul[@class='nav-ul']//following::li[8]")]
+        private IWebElement CarsandMotorbikesbtn;
+
+
+
 
         //select a sony tv into cart
         [FindsBy(How = How.XPath, Using = "//input[@id='twotabsearchtextbox']")]

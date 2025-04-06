@@ -9,7 +9,7 @@ using NUnit.Framework;
 using POMpractice.Utilities;
 using POMpractice.PageObject;
 
-namespace POMpractice.Testcasess
+namespace POMpractice.TestCases.Amazon
 {
     public class BaseTest : Base
     //dotnet test path.csproj --filter "TestCategory=Smoke"
@@ -19,7 +19,7 @@ namespace POMpractice.Testcasess
         //[TestCase("maharshibadiganti@gmail.com","Maharshi08@#")]
         //[TestCase("Maharshibadiganti@gmail.com","Maharshi")]
         [TestCaseSource(nameof(AddTestData))]
-        
+
         public void AmazonLogin(string username, string password)//str name str password
         {
             LoginPage login = new LoginPage(getDriver());
@@ -61,10 +61,22 @@ namespace POMpractice.Testcasess
         {
             LoginPage login = new LoginPage(getDriver());
             login.LogintoAmazon(username, password);
-            
+
             //login.WaitUntillPageDisplay("");
             //LoginPage success = login.LogintoAmazon(username, password);
             // success.WaitUntillPageDisplay();
+
+        }
+
+    }
+    public class Amazontests : Base
+    {
+        [Test]
+        public void Amazonbtns(string Freshbtn)
+        {
+
+            Console.WriteLine($"{Freshbtn}");
+
 
         }
 
