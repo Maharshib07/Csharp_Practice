@@ -21,7 +21,7 @@ namespace POMpractice.Common
         }
         public IWebElement FindElement(By locator)
         {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             var element = wait.Until(ExpectedConditions.ElementExists(locator));
             return element;
 
@@ -43,17 +43,17 @@ namespace POMpractice.Common
             IWebElement element = FindElement(locator);
             ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", element);
         }
-        public void scrolltoelement(By locator)
-        {
+        //public void scrolltoelement(By locator)
+        //{
 
-            FindElement(locator).SendKeys(Keys.PageDown);
-            FindElement(locator).ScrollToElement();   
-            element.Click();
-        }
-        public void Doubleclick(By locator)
-        {
+        //    FindElement(locator).SendKeys(Keys.PageDown);
+        //    //FindElement(locator).ScrollToElement();   
+        //    locator.Click();
+        //}
+        //public void Doubleclick(By locator)
+        //{
 
-            FindElement(locator).DoubleClick()
-        }
+        //    FindElement(locator).DoubleClick()
+        //}
     }
 }
