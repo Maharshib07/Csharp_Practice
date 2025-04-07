@@ -13,10 +13,10 @@ namespace POMpractice.PageObject
 {
     public class LoginPage
     {
-        public IWebDriver _driver;
+        public IWebDriver driver;
         public LoginPage(IWebDriver driver)
         {
-            this._driver = driver;
+            this.driver = driver;
             PageFactory.InitElements(driver, this);
 
         }
@@ -123,7 +123,7 @@ namespace POMpractice.PageObject
                 enterpassword.SendKeys(password);
                 Signbtn.Click();
                 
-                IWebElement ValidPassword = _driver.FindElement(By.XPath("//span[text()='Hello, Maharshi']"));
+                IWebElement ValidPassword = driver.FindElement(By.XPath("//span[text()='Hello, Maharshi']"));
                 string stitle = ValidPassword.Text;
                 Assert.IsTrue(stitle == "Hello, Maharshi", "Invalid Username or Password");
             }
@@ -139,8 +139,8 @@ namespace POMpractice.PageObject
             entersonytv.SendKeys(Keys.Enter);
             Findsony55inchtv.Click();
 
-            var windowHandles = _driver.WindowHandles;     // Handles switch Window
-            _driver.SwitchTo().Window(windowHandles[1]);
+            var windowHandles = driver.WindowHandles;     // Handles switch Window
+            driver.SwitchTo().Window(windowHandles[1]);
 
             addtvtocart.Click();
             clickoncartbtn.Click();
